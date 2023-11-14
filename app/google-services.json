@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "824324342344",
+    "project_id": "t2023it2-sampleproj-73b72",
+    "storage_bucket": "t2023it2-sampleproj-73b72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824324342344:android:7e8ba86eb7b4fe265c4e7d",
+        "android_client_info": {
+          "package_name": "louis.pawaon.mysecondapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824324342344-32h6r8j9svoa0b9ck610a79pneck03nf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAsL572c94S3UyaZENgQc0nD5fl_xyp6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824324342344-32h6r8j9svoa0b9ck610a79pneck03nf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824324342344:android:2985e6534de2f40e5c4e7d",
+        "android_client_info": {
+          "package_name": "t2023.it2.juicecubi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824324342344-32h6r8j9svoa0b9ck610a79pneck03nf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAsL572c94S3UyaZENgQc0nD5fl_xyp6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824324342344-32h6r8j9svoa0b9ck610a79pneck03nf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
