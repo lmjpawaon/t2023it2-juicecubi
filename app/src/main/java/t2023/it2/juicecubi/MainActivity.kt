@@ -52,7 +52,10 @@ package t2023.it2.juicecubi
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -64,19 +67,43 @@ class MainActivity : AppCompatActivity() {
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+        Log.d("Authentication", "User is ${if (auth.currentUser != null) "signed in" else "not signed in"}")
 
         // Find the logout button by ID
         val logoutButton = findViewById<Button>(R.id.logoutButton)
+
+        /*val greetingTextView = findViewById<TextView>(R.id.greetingTextView)
+
+        // Set the greeting based on the user's display name
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val displayName = currentUser.displayName
+            Log.d("CurrentUser", "User is $displayName")
+            greetingTextView.text = "Hello, $displayName!"
+        }*/
 
         // Set a click listener for the logout button
         logoutButton.setOnClickListener {
             // Logout the user
             auth.signOut()
+            Toast.makeText(this, "User Signed Out.", Toast.LENGTH_SHORT).show()
 
             // Redirect to LoginActivity
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish() // Optional: Close the main activity
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        // Check if the user is signed in
+        if (auth.currentUser == null) {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        // If the user is already signed in, you can optionally perform other actions here
     }
 }
