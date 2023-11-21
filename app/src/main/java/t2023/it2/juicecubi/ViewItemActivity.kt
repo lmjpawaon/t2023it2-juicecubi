@@ -32,6 +32,7 @@ class ViewItemActivity : AppCompatActivity() {
         // Load the image using Glide
         Glide.with(this)
             .load(photoUrl)
+            .placeholder(R.drawable.logo)
             .into(photoImageView)
 
         //Back To Main

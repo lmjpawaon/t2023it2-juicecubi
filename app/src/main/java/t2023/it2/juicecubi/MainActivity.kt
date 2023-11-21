@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             // Load the image using Glide
             Glide.with(holder.itemView)
                 .load(item.photoUrl)
-//                .placeholder(R.drawable.placeholder_image) // Placeholder image while loading
+                .placeholder(R.drawable.logo) // Placeholder image while loading
 //                .error(R.drawable.error_image) // Image to show in case of an error
                 .into(holder.photoImageView)
 
