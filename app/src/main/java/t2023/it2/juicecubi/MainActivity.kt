@@ -74,8 +74,16 @@ class MainActivity : AppCompatActivity() {
 
             // Handle "View" button click if needed
             holder.btnView.setOnClickListener {
-                // TODO: Handle the "View" button click
-                // For example, open a new activity or show more details in a dialog
+                val intent = Intent(holder.itemView.context, ViewItemActivity::class.java).apply {
+                    // Pass data as extras to the intent
+                    putExtra("name", item.name)
+                    putExtra("description", item.description)
+                    putExtra("price", item.price)
+                    putExtra("photoUrl", item.photoUrl)
+                }
+
+                // Start ViewItemActivity
+                holder.itemView.context.startActivity(intent)
             }
         }
 
@@ -92,27 +100,8 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         Log.d("Authentication", "User is ${if (auth.currentUser != null) "signed in" else "not signed in"}")
 
-        // Find the logout button by ID
-        val logoutButton = findViewById<Button>(R.id.logoutButton)
-
-        // Set a click listener for the logout button
-        logoutButton.setOnClickListener {
-            // Logout the user
-            auth.signOut()
-            Toast.makeText(this, "User Signed Out.", Toast.LENGTH_SHORT).show()
-
-            // Redirect to LoginActivity
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish() // Optional: Close the main activity
-        }
-
-        // Initialize buttons
-        btnAdd = findViewById(R.id.btnAdd)
-        btnLogout = findViewById(R.id.logoutButton)
-
         // Set up the RecyclerView
-        recyclerView = findViewById(R.id.recyclerView)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         // Fetch data from Firestore
@@ -129,9 +118,31 @@ class MainActivity : AppCompatActivity() {
                 adapter = YourAdapter(dataList)
                 recyclerView.adapter = adapter
             }
-//            .addOnFailureListener { exception ->
-//                // Handle errors
-//            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error Loading Menu: $e", Toast.LENGTH_SHORT).show()
+            }
+
+        // Logout and Add Button Declaration
+        val logoutButton = findViewById<Button>(R.id.btnLogout)
+        val addButton = findViewById<Button>(R.id.btnAdd)
+
+        // Set a click listener for the logout button
+        logoutButton.setOnClickListener {
+            // Logout the user
+            auth.signOut()
+            Toast.makeText(this, "User Signed Out.", Toast.LENGTH_SHORT).show()
+
+            // Redirect to LoginActivity
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish() // Optional: Close the main activity
+        }
+
+        addButton.setOnClickListener {
+            val intent = Intent(this, AddItemActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
 
@@ -144,6 +155,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        // If the user is already signed in, you can optionally perform other actions here
+
     }
 }
