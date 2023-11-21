@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
