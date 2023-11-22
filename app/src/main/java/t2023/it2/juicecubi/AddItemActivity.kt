@@ -17,6 +17,11 @@ class AddItemActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_item)
 
         val btnSubmit = findViewById<Button>(R.id.btnSubmit)
+        val btnBack = findViewById<Button>(R.id.btnBack)
+
+        btnBack.setOnClickListener {
+            finish()
+        }
 
         btnSubmit.setOnClickListener {
             // Gather information from EditText fields
