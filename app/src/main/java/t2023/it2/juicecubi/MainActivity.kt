@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             val photoImageView: ImageView = itemView.findViewById(R.id.photoImageView)
             val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
 //            val descriptionTextView: TextView = itemView.findViewById(R.id.descriptionTextView)
-//            val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)
+            val priceTextView: TextView = itemView.findViewById(R.id.priceTextView)
             val btnView: Button = itemView.findViewById(R.id.btnView)
         }
 
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
             holder.nameTextView.text = item.name
 //            holder.descriptionTextView.text = item.description
-//            holder.priceTextView.text = "Php ${item.price}"
+            holder.priceTextView.text = "Php ${item.price}"
 
             // Handle "View" button click if needed
             holder.btnView.setOnClickListener {
