@@ -10,16 +10,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:backgroundTint="#FFFFFF"
+        android:background="@color/background"
+        android:backgroundTint="@color/background"
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/img_regLogo"
-            android:layout_width="175dp"
-            android:layout_height="147dp"
-            app:srcCompat="@drawable/logo" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_logo_2"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="1000dp">
+
+            <ImageView
+                android:id="@+id/img_regLogo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/logo" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/text_registration"
@@ -37,46 +46,57 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:text="Create a Juice Cubi account"
-            android:textColor="#707070" />
+            android:textColor="@color/foreground_light" />
 
-        <LinearLayout
-            android:id="@+id/layout_v_regInputs"
-            android:layout_width="300dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_form_reg"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp">
 
-            <EditText
-                android:id="@+id/displayNameEditText"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="0dp"
-                android:hint="Display Name" />
+            <LinearLayout
+                android:id="@+id/layout_v_regInputs"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="18dp"
+                android:paddingTop="12dp"
+                android:paddingRight="18dp"
+                android:paddingBottom="12dp">
 
-            <EditText
-                android:id="@+id/emailEditText"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="0dp"
-                android:hint="Email" />
+                <EditText
+                    android:id="@+id/displayNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="0dp"
+                    android:hint="Display Name" />
 
-            <EditText
-                android:id="@+id/passwordEditText"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="0dp"
-                android:hint="Password" />
+                <EditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="0dp"
+                    android:hint="Email" />
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="0dp"
+                    android:hint="Password" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/registerButton"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FBDB65"
+            android:backgroundTint="@color/background_primary"
             android:text="Register and Login"
-            android:textColor="#000000"
+            android:textColor="@color/foreground_inverted"
             app:cornerRadius="6dp" />
 
         <Space
