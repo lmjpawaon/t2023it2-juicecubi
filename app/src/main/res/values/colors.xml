@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="background">#F2D3B0</color>
+    <color name="background_inverted">#FFFFFF</color>
+    <color name="background_primary">#612707</color>
+    <color name="foreground">#121212</color>
+    <color name="foreground_inverted">#FFFFFF</color>
 </resources>
