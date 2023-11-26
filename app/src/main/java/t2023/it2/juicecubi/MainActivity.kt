@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
             holder.nameTextView.text = item.name
 //            holder.descriptionTextView.text = item.description
-            holder.priceTextView.text = "Php ${item.price}"
+            holder.priceTextView.text = String.format("PHP %.2f", item.price)
 
             // Handle "View" button click if needed
             holder.btnView.setOnClickListener {
