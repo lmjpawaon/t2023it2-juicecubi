@@ -19,6 +19,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ServerTimestamp
 import com.google.type.Date
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: YourAdapter
     private lateinit var btnAdd: Button
     private lateinit var btnLogout: Button
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private val db = FirebaseFirestore.getInstance() // Initialize Firestore
 
     data class YourData(
@@ -101,26 +103,18 @@ class MainActivity : AppCompatActivity() {
         Log.d("Authentication", "User is ${if (auth.currentUser != null) "signed in" else "not signed in"}")
 
         // Set up the RecyclerView
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Fetch data from Firestore
-        db.collection("menu") // Replace with your collection name
-            .get()
-            .addOnSuccessListener { result ->
-                val dataList = mutableListOf<YourData>()
-                for (document in result) {
-                    val yourData = document.toObject(YourData::class.java)
-                    dataList.add(yourData)
-                }
+        // Initialize SwipeRefreshLayout - If you refresh the main menu it will give you updated entries
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
 
-                // Set up the RecyclerView adapter
-                adapter = YourAdapter(dataList)
-                recyclerView.adapter = adapter
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error Loading Menu: $e", Toast.LENGTH_SHORT).show()
-            }
+        // Set up SwipeRefreshLayout listener
+        swipeRefreshLayout.setOnRefreshListener {
+            fetchDataFromFirestore()
+        }
+
+        fetchDataFromFirestore()
 
         // Logout and Add Button Declaration
         val logoutButton = findViewById<Button>(R.id.btnLogout)
@@ -144,7 +138,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Fetch data from Firestore
+    private fun fetchDataFromFirestore() {
+        db.collection("menu") // Replace with your collection name
+            .get()
+            .addOnSuccessListener { result ->
+                val dataList = mutableListOf<YourData>()
+                for (document in result) {
+                    val yourData = document.toObject(YourData::class.java)
+                    dataList.add(yourData)
+                }
 
+                // Set up the RecyclerView adapter
+                adapter = YourAdapter(dataList)
+                recyclerView.adapter = adapter
+
+                // Stop the refreshing animation
+                swipeRefreshLayout.isRefreshing = false
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error Loading Menu: $e", Toast.LENGTH_SHORT).show()
+                // Stop the refreshing animation in case of failure
+                swipeRefreshLayout.isRefreshing = false
+            }
+    }
     override fun onStart() {
         super.onStart()
 

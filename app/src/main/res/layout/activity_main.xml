@@ -40,15 +40,24 @@
 
     </LinearLayout>
 
-    <!-- RecyclerView for displaying a list of items -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/buttonLayout"
-        android:layout_marginLeft="22dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="22dp"
-        android:layout_marginBottom="8dp" />
+        android:id="@+id/swipeRefreshLayout">
+
+        <!-- RecyclerView for displaying a list of items -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginBottom="8dp" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>
